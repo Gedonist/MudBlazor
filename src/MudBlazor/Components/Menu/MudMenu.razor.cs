@@ -22,8 +22,8 @@ namespace MudBlazor
         .AddClass("mud-disabled", Disabled)
        .Build();
 
-        private bool _isOpen;
-        private bool _isMouseOver = false;
+        protected bool _isOpen;
+        protected bool _isMouseOver = false;
 
         [Parameter]
         [Category(CategoryTypes.Menu.Behavior)]
@@ -211,6 +211,12 @@ namespace MudBlazor
         [Parameter]
         [Category(CategoryTypes.Menu.Appearance)]
         public bool DisableElevation { get; set; }
+        
+        /// <summary>
+        /// Sets the elevation of MudPopover
+        /// </summary>
+        [Parameter]
+        public int Elevation { get; set; }
 
         #region Obsolete members from previous MudButtonBase inherited structure
 
@@ -267,7 +273,7 @@ namespace MudBlazor
         }
 
         // Sets the popover style ONLY when there is an activator
-        private void SetPopoverStyle(MouseEventArgs args)
+        protected void SetPopoverStyle(MouseEventArgs args)
         {
             AnchorOrigin = Origin.TopLeft;
             PopoverStyle = $"margin-top: {args?.OffsetY.ToPx()}; margin-left: {args?.OffsetX.ToPx()};";
